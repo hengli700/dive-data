@@ -1,7 +1,11 @@
 # Setup
 title:               Dive Data
 tagline:             ~ Swim Far and Dive Deep
-description:         place holder
+description:         |
+  Heng Li<br>
+  MS in CS @ Georgia Tech<br>
+  PhD in ME @ Northeastern
+
 url:
 baseurl:             '/dive-data'
 paginate:            5
@@ -18,5 +22,5 @@ plugins:
   - jekyll-paginate
 
 # Custom vars
-version:             1.1.0
-google_analytics_id: #UA-XXXX-Y
+version:             0.0.2
+# google_analytics_id: #UA-XXXX-Y
