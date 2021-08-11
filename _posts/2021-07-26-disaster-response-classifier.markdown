@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Disaster Response Classifier"
+title:  "Disaster response classifier"
 date:   2021-07-26 12:31:20 -0700
 categories: machine-learning
 ---
