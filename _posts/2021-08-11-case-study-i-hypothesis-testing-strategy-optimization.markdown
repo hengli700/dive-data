@@ -6,7 +6,7 @@ categories: experiment-design-recommendation
 usemathjax: true
 ---
 
-This case study is one of the take-home assignment provided by Starbucks for their job candidates. It is a great example of 1) **hypothesis testing** and 2) **machine learning in business analytics**. More specifically, hypothesis testing was performed to evaluate data gathered from A/B testing, and determine levels of significance for the business metrics of interest. Following by the evaluations, the conclusions were further used to inform and optimize Ad campaign strategy to improve the business metrics.
+This case study is one of the take-home assignment provided by Starbucks for their job candidates. It is a great example of 1) **hypothesis testing** and 2) **machine learning in business analytics**. More specifically, hypothesis testing was performed to evaluate data gathered from A/B testing, and determine levels of significance for the business metrics of interest. Following the evaluations, the conclusions were further used to inform and optimize Ad campaign strategy to improve the business metrics.
 
 ## Background information
 The data for this exercise consists of about 120,000 data points split in a 2:1 ratio among training and test files. In the experiment simulated by the data, an advertising promotion was tested to see if it would bring more customers to purchase a specific product priced at $10. Since it costs the company 0.15 to send out each promotion, it would be best to limit that promotion only to those that are most receptive to the promotion. Each data point includes one column indicating whether or not an individual was sent a promotion for the product, and one column indicating whether or not that individual eventually purchased that product. Each individual also has seven additional features associated with them, which are provided abstractly as V1-V7.
@@ -184,7 +184,7 @@ There are two approaches we could perform this hypothesis testing via analytical
 
 Since the assignment of control and treatment group follows binomial distributions, analytical method can be used. Following the **analytical approach**, _p-val of 0.5068 is obtained_.
 
-On the other hand, **simulation or non-parametric methods** such as bootstrapping does not rely on assumptions on distributions. Based off Law of Large Numbers and its closest cousin Central Limit Theorem, modern computing power enables us to use bootstrapping to obtain a good estimate on test statistics, such as means, differences in means, as well as proportion and difference in proportions.
+On the other hand, **simulation or non-parametric methods** such as bootstrapping can be used to estimate test statistics. This type of methods does not rely on assumptions on distributions. Based off Law of Large Numbers and its closest cousin Central Limit Theorem, modern computing power enables us to use bootstrapping to obtain a good estimate on test statistics, such as means, differences in means, as well as proportion and difference in proportions.
 
 In this case study, we could first obtain observed difference between the sample and null hypothesis as:
 
@@ -218,6 +218,7 @@ print("p-value for the invariant metric: {:.4f}".format(p_val))
 Since we are using **IRR** and **NIR** to determine if the promotion has a significant effect on purchase, we are performing mutiple comparsions. Therefore the significance level for each test needs to be corrected. Using **Bonferroni correction** and a total signifcance level of 0.05, we can use **$$\alpha$$ = 0.025** for each test.
 
 #### 2.3.1 IRR
+
 $$
 \begin{align}
     IRR = p_{pur\_treat} - p_{pur\_ctrl} \\
@@ -315,4 +316,4 @@ This case study demonstrated the workflow of experimental design, hypothesis tes
 
 
 ## Acknowledgments
-Udacity Data Scientist Nanodegree program
+Dataset is provided by Udacity Data Scientist Nanodegree program
