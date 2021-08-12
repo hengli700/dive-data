@@ -32,4 +32,4 @@ This blog serves as the portfolio showcasing the projects I have encountered in 
 ### Selected publications
 * Nature (2018) - <a href="https://www.nature.com/articles/nature25476" target="_blank">Processing bulk natural wood into a high-performance structural material</a>
 * Polymer (2017) - <a href="https://www.sciencedirect.com/science/article/abs/pii/S0032386117310005" target="_blank">On the formation of potential polymer-nanotube blends by liquid-solid phase separation</a>
-* Materials (2013) - <a href="https://www.mdpi.com/1996-1944/6/6/2543" target="_blank">Structural Polymer-Based Carbon Nanotube Composite Fibers: Understanding the Processing–Structure–Performance Relationship</a>
+* Materials (2013) - <a href="https://www.mdpi.com/1996-1944/6/6/2543" target="_blank">Structural polymer-based carbon nanotube composite fibers: Understanding the processing–structure–performance relationship</a>
