@@ -14,8 +14,11 @@ permalink:           pretty
 # About/contact
 author:
   name:              Heng Li
-  url:               https://github.com/hengli700
-  email:             hengli700@gmail.com
+  # url:               https://github.com/hengli700
+  contact:
+    email:             mailto:hengli700@gmail.com
+    linkedin:          https://www.linkedin.com/in/hengli700/
+    github:            https://github.com/hengli700
 
 # Gems
 plugins:
