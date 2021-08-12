@@ -4,7 +4,6 @@ title:  "Disaster response classifier"
 date:   2021-07-26 12:31:20 -0700
 categories: machine-learning
 ---
-<img src="{{site.baseurl}}/assets/img/07262021-response-classifier-app/classifying_example_front.png" alt="classification example"/>
 
 This project is aimed at constructing a web-based pipeline to classify messages potentially related to disaster response. If related, the message is further classified into an individual category, such as 'Request', 'Food', 'Water', etc. This
 web-based application and underlying machine learning classifier can facilitate disaster response task by deciding whether a message from
