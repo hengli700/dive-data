@@ -7,7 +7,8 @@ usemathjax: false
 ---
 
 <img src="{{site.baseurl}}/assets/img/20210825-spark-churn/customer-churn.png" alt="customer churn"/>
-Image credit — www.humanlytics.co
+
+> Image credit — www.humanlytics.co
 
 ## What is customer churn? Why it is important?
 
@@ -74,22 +75,14 @@ For users with churn event, users were marked with 1 in a separate column named 
 
 ### General trend
 
-<div>
 
-<div>
 <img src="{{site.baseurl}}/assets/img/20210825-spark-churn/user-trend.png" alt="user trend"/>
 
 > Figure 1. (top) Trend of distinct active users over month. (bottom) Number of actions for selected users in Oct and Nov 2018.
 
-</div>
+The presented dataset spans from the beginning of Oct 2018 to beginning of Dec 2018. It is helpful to first get an overview of how Sparkify business in terms of month active users.
 
-<div>
-<p>The presented dataset spans from the beginning of Oct 2018 to beginning of Dec 2018. It is helpful to first get an overview of how Sparkify business in terms of month active users.</p><br>
-
-<p>Figure 1 (top) shows there is a slight drop in monthly active users from Oct to Nov 2018. With the amount of data on hand, it is inconclusive whether this change is significant or not. However, it does signaling the need to look at customer churn. On an individual level, Figure 1 (bottom) shows some users increased service usage from Oct to Nov; others decrease or even not use the service at all.</p><br>
-
-</div>
-</div>
+Figure 1 (top) shows there is a slight drop in monthly active users from Oct to Nov 2018. With the amount of data on hand, it is inconclusive whether this change is significant or not. However, it does signaling the need to look at customer churn. On an individual level, Figure 1 (bottom) shows some users increased service usage from Oct to Nov; others decrease or even not use the service at all.
 
 ### Churned users break-down by categorical features
 
@@ -149,40 +142,24 @@ The numerical features after feature engineering showed less correlation. The tr
 
 The transformed dataset was first split into train, test, and validation sets. Several of the machine learning classifiers, including Logistic Regression, Decision Tree, Random Forest, and Gradient Boost Tree, were used for training. Since the proportion of churned users is small compared with remaining users, i.e. imbalanced dataset, F1 score was used as the main measure for accuracy of various models.
 
-<div>
-
-<div>
 <img src="{{site.baseurl}}/assets/img/20210825-spark-churn/base.png" alt="baseline performance"/>
 
 > Figure7. Baseline performances of various ML models on validation set.
 
-</div>
+Before feeding the training set into ML models, feature scaling through standardization was performed. Baseline performances were first obtained for the above models using default settings from Spark ML library. The result is shown in Figure 7.
 
-<div>
-<p>Before feeding the training set into ML models, feature scaling through standardization was performed. Baseline performances were first obtained for the above models using default settings from Spark ML library. The result is shown in Figure 7.</p><br>
-
-<p>From the baseline score result, random forest classifier performed the best on validation set with F-1 score of 0.7761 and accuracy of 0.815.</p><br>
-</div>
-</div>
+From the baseline score result, random forest classifier performed the best on validation set with F-1 score of 0.7761 and accuracy of 0.815.
 
 Use the same trained random forest classifier on test set, we got F-1 score of 0.7007 and accuracy of 0.76. To improve its performance, hyper-parameter tuning was performed on this model with 5-fold cross-validation on the training set.
 
+After, hyper-parameter tuning, the performance of the newly trained random forest classifier on test set improved slightly to a F-1 score of 0.7066 and accuracy of 0.768.
 
-<div>
 
-<div>
 <img src="{{site.baseurl}}/assets/img/20210825-spark-churn/importance.png" alt="feature importance ranking"/>
 
 > Figure 8. Feature importance ranking extracted for tuned random forest classifier.
 
-</div>
-
-<div>
-<p>After, hyper-parameter tuning, the performance of the newly trained random forest classifier on test set improved slightly to a F-1 score of 0.7066 and accuracy of 0.768.</p><br>
-
-<p>Feature importance was also extracted from tuned model (shown in Figure 8). Looking at feature importance ranking, we could see that customer tenure time is the most important, followed by user actions, such as receiving ads, thumb-downs, and positive engagements (add to playlist, nextsong, thumbs up). On the other side of the spectrum, gender and level of service are of least importance, which is in line with the hypothesis testing where we conclude the differences are not significant.</p><br>
-</div>
-</div>
+Feature importance was also extracted from tuned model (shown in Figure 8). Looking at feature importance ranking, we could see that customer tenure time is the most important, followed by user actions, such as receiving ads, thumb-downs, and positive engagements (add to playlist, nextsong, thumbs up). On the other side of the spectrum, gender and level of service are of least importance, which is in line with the hypothesis testing where we conclude the differences are not significant.
 
 ## Conclusion
 
