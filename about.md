@@ -7,14 +7,14 @@ title: About
 <img style="float: left; width: 15em; margin-right: 1em" src="{{site.baseurl}}/assets/img/about/profile.png" alt="profile image"/>
 </div>
 <p>
-  Hi there! My name is Heng Li. I am an aspired Data Scientist looking for adventures in the field of data science, machine learning, and business analysis. Before starting this journey as a data scientist, I have been a Research Scientist helping businesses from early-stage start-ups to public-traded companies. I enjoy learning new knowledge and tools, and at the same time diving deep as needed to find solutions.
+  Hi there! My name is Heng Li. Before starting this journey as a data scientist, I have been a Research Scientist helping businesses from early-stage start-ups to public-traded companies. I enjoy learning new knowledge and tools, and at the same time diving deep as needed to find solutions.
 </p>
 <p>
-  I graduated from <a href="https://www.northeastern.edu/" target="_blank">Northeastern University</a> with a Ph.D. in Mechanical Engineering, specialized in <a href="https://en.wikipedia.org/wiki/Computational_materials_science" target="_blank">Computational Materials Science</a>. I am in the process of getting Master of Science degree (MS) (Fall 2021) in Computer Science from <a href="https://www.gatech.edu/" target="_blank">Georgia Tech</a>, specialized in Machine Learning.
+  I have Master's degree in Computer Science graduated from <a href="https://www.gatech.edu/" target="_blank">Georgia Tech</a> and Ph.D. in Mechanical Engineering from <a href="https://www.northeastern.edu/" target="_blank">Northeastern University</a> specialized in <a href="https://en.wikipedia.org/wiki/Computational_materials_science" target="_blank">Computational Materials Science</a>. 
 </p>
 
 <p>
-  To date, data science has been a great tool throughout my career, in analyzing molecular interactions during research, designing experiments, as well as extracting insights to help business success.
+  To date, data science has been a great tool throughout my career, in analyzing molecular interactions during research, designing experiments, as well as extracting insights to help businesses succeed.
 </p>
 
 ---
