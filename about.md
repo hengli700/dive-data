@@ -10,7 +10,7 @@ title: About
   Hi there! My name is Heng Li. Before starting this journey as a data scientist, I have been a Research Scientist helping businesses from early-stage start-ups to public-traded companies. I enjoy learning new knowledge and tools, and at the same time diving deep as needed to find solutions.
 </p>
 <p>
-  I have Master's degree in Computer Science graduated from <a href="https://www.gatech.edu/" target="_blank">Georgia Tech</a> and Ph.D. in Mechanical Engineering from <a href="https://www.northeastern.edu/" target="_blank">Northeastern University</a> specialized in <a href="https://en.wikipedia.org/wiki/Computational_materials_science" target="_blank">Computational Materials Science</a>. 
+  I have Master's degree in Computer Science from <a href="https://www.gatech.edu/" target="_blank">Georgia Tech</a> and Ph.D. in Mechanical Engineering from <a href="https://www.northeastern.edu/" target="_blank">Northeastern University</a> specialized in <a href="https://en.wikipedia.org/wiki/Computational_materials_science" target="_blank">Computational Materials Science</a>. 
 </p>
 
 <p>
