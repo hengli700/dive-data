@@ -10,8 +10,6 @@ usemathjax: true
 
 [comment]: <> (> Image credit — www.humanlytics.co)
 
-## 1 INTRODUCTION AND MOTIVATION
-
 Finding a street parking spot during peak hours is always headache due to availability, price and safety concerns. The ideal parking spot would provide sense of
 comfort and safety.
 
@@ -23,6 +21,7 @@ creating a non-unified experience. This project considers the street parking tic
 as well as the crime elements, and tries to bring peace
 of mind to the users.
 
+## 1 INTRODUCTION AND MOTIVATION
 The objective of this project is to develop a parking
 recommendation application based on user preferences
 to make data-informed decisions to locate a parking
@@ -166,185 +165,93 @@ of squared errors (WCSS) then we select the number of
 clusters where the change in WCSS begins to level off
 (elbow method).[Lin et al. 2019].
 
-$$ WCSS_{k} = sum_{i=1}^{k} \frac{1}{2n_{i}}D_{i}$$
+Additionally we assigned risk level to each parking meter to provide adjustable level of risk tolerance, when searching for parking. Each precinct was categorized into 4 risk levels based on number of cases of vehicle larceny. Then, we utilized K-nearest neighbours algorithm to learn precinct class of parking violation data, as well as crime data, and predict the precinct of each parking meter. Subsequently the risk level of precinct can be assigned to meters.
 
+#### 3.3.4 User Interface
 
+We built a flask app to display the maps of the NYC with heatmaps for crime and parking data and search page for parking meters. It was infeasible to display heat density map of crimes and parking violations due to processing and rendering requirements so we aggregated data down to police precinct level. The precincts are highlighted on the map and are colored by crime and violation statistics, and represent relative security risk. Each precinct can be selected or searched for additional comparative data.
 
-\begin{algorithm}
-\caption{$k$-Means Algorithm}\label{alg:cap}
-\begin{algorithmic}
-\State Initialize cluster centroids $u_1$, $u_2$, ..., $u_k$  $\epsilon$ $R^m$ randomly
-\While{$u_j$ $is$ $not$ $converged$}
-\ForEach {$i$}
-\State $u^{(i)} := arg min_j || x^{(i)} - \mu_j||^2$
-\EndFor
-\ForEach {$j$}
-\State $\mu_j := \frac{\Sigma_{i=1}^m \{c^{(i)} = j\} x^{(i)} }{\Sigma_{i=1}^m \{c^{(i)} = j\}}$
-\EndFor
-\EndWhile
+<img src="{{site.baseurl}}/assets/img/20220112-parkomfort/ui_1.png" alt="user interface"/>
 
-\end{algorithmic}
-\end{algorithm}
+> Figure 1. Top: Screenshot for larceny; Bottom: Screenshot for parking violations
 
-\begin{equation}
-WCSS_k = \sum\limits_{k=1}^k  \frac{1}{2n_k} D_k
-\label{eqn:kmeans_assign_step}
-\end{equation}
-where
-\begin{equation}
-D_k = {\sum\limits_{x_i \epsilon C_k} \sum\limits_{x_j \epsilon C_k}  ||x_i - x_j||^2 } = {2n_k \sum\limits_{x_i \epsilon C_k} ||x_i - \mu_k||^2}
-\label{eqn:kmeans_assign_step2}
-\end{equation}
-\newline
+The search page takes any NYC address and looks for closest parking meters. Search through 15 thousand parking meters may take considerable time so we implemented 2-level search to first limit the search radius to user defined radius, then second layer calculates euclidean distance from desired address to these meters, ranks them and displays 10 closest on the map. In case of the desired address being in high risk zone, the search algorithm would output results in nearby, safer precincts within the set radius.
 
+<img src="{{site.baseurl}}/assets/img/20220112-parkomfort/ui_2.png" alt="user interface"/>
 
-## What is this project about?
+> Figure 2. Screenshot searching for closest 10 parking meter locations
 
-Sparkify is a fictional music streaming service similar to Apple Music, Spotify, etc. The dataset provided is in the form of event logs when customers use the streaming services, including artists, songs, geolocation, timestamp, demographic infos, user actions etc.
+## 4 EXPERIMENTS/EVALUATION
+### 4.1 Hypotheses
+1. Compare and contrast the effectiveness of the predictive algorithms implemented based on the past data in regards to places to park (considering the parking tickets, and crime location data)?
+2. Is there strong the correlation is there between amount of parking tickets issued versus crime rate?
+3. Is User Interface usable and intuitive?
 
-The main goal of this project is to analyze the event log data and build a machine learning model to predict the users who are more likely to cancel service (churn), and thus use this information in ad campaign to reduce customer out-flow.
+### 4.2 Plans of Observations
+This can be accomplished in the following ways:
+1. Subscribe to social media for local news about crimes at the area
+2. In person observation at locations with high park- ing tickets issued
+3. Depends on the frequency of the NYC open data updates, we can keep track of the new data to test the hypothesis over a span of 1 month.
+4. Using user reviews to test UI usability
 
-In addition, due to the amount of data used, we leveraged spark (pySpark), spark SQL, spark ML and cloud service provided by IBM to perform data wrangling, exploration, and machine learning tasks.
+### 4.3 Evaluation
+We first performed exploratory analyses on the cleaned vehicle larceny and parking violation datasets.
 
-## Data exploration
+On vehicle larceny data in NYC, Fig. 3 showed the distribution of vehicle-related crimes over the month(YTD), week, and day. It was found summer season sees the highest occurence of crimes throughout the year, and most vehicle larceny happens starting from 1 pm till mid- night. There isn’t much day-to-day variations through- out the week.
 
-The entire dataset contains 543705 rows, with following columns corresponding to the record from the event log. Among these rows, there are 15700 rows with empty userId from “Logged Out” and “Guest” users. The data set was first cleaned by removing those rows and only considered rows with valid userId.
+<img src="{{site.baseurl}}/assets/img/20220112-parkomfort/fig_3.png" alt="vehicle larceny data in NYC"/>
 
-```
-root
- |-- artist: string (nullable = true)
- |-- auth: string (nullable = true)
- |-- firstName: string (nullable = true)
- |-- gender: string (nullable = true)
- |-- itemInSession: long (nullable = true)
- |-- lastName: string (nullable = true)
- |-- length: double (nullable = true)
- |-- level: string (nullable = true)
- |-- location: string (nullable = true)
- |-- method: string (nullable = true)
- |-- page: string (nullable = true)
- |-- registration: long (nullable = true)
- |-- sessionId: long (nullable = true)
- |-- song: string (nullable = true)
- |-- status: long (nullable = true)
- |-- ts: long (nullable = true)
- |-- userAgent: string (nullable = true)
- |-- userId: string (nullable = true)
-```
+> Figure 3. Overview of vehicle larceny data in NYC
 
-Before further exploring the data, it is necessary to define what “churn” means for each user. Related back to the indication of churn as cancelling a service, after obtaining distinct actions in the “page” column (shown below), we define the occurrence of churn event when a user has action of “Cancellation Confirmation”. This definition applies to both paid and free tier customers.
+Fig. 4 displays the heatmaps for vehicle larceny data in NYC. Based on heatmaps, it is observed that precinct- level distribution is aligned with density, and crime data shows geographical concentrations most residing north and south of NYC.
 
-```
-['Cancel', 'Submit Downgrade', 'Thumbs Down', 'Home', 'Downgrade', 'Roll Advert', 'Logout', 'Save Settings', 'Cancellation Confirmation', 'About', 'Settings', 'Add to Playlist', 'Add Friend',
-'NextSong', 'Thumbs Up', 'Help', 'Upgrade', 'Error', 'Submit Upgrade']
-```
+<img src="{{site.baseurl}}/assets/img/20220112-parkomfort/fig_4.png" alt="Heatmap of vehicle larceny data in NYC"/>
 
-For users with churn event, users were marked with 1 in a separate column named “churn”. With the definition in place, we can perform more analyses on how Sparkify customers interact with the service based on whether they are churned or remaining customers.
+> Figure 4. Heatmap of vehicle larceny data in NYC
 
-### General trend
+<img src="{{site.baseurl}}/assets/img/20220112-parkomfort/fig_5.png" alt="Heatmap of parking violation data in NYC"/>
 
+> Figure 5. Heatmap of parking violation data in NYC
 
-<img src="{{site.baseurl}}/assets/img/20210825-spark-churn/user-trend.png" alt="user trend"/>
+Regarding parking violation data for the year 2020 and 2021, Fig.6 shows the distribution of parking violations for vehicle make/type, as well as over the month, week and day. It could be seen that some vehicle brands and types experienced high parking violations than others. This could be due to reasons such as market share and consumer preferences. The distribution of violations over the month, week and day provides more insights for our applications. It could be seen that during the first half of 2020 and 2021, there aren’t many parking viola- tions recorded, which is probability due to the influence of COVID-19 pandemic (either fewer people commut- ing to the city or enforcement agency stopping issuing tickets). Weekday sees the most occurrences of parking violations, and most parking tickets were issued from 6 amto6pm.
 
-> Figure 1. (top) Trend of distinct active users over month. (bottom) Number of actions for selected users in Oct and Nov 2018.
+Fig. 5 displays the heatmap for parking violation data in NYC. Different from the larceny, parking violations shows different geographical distribution. Based on the heatmaps similarity, it is observed that precinct-level distribution is aligned with density. However, parking violation data shows geographical concentrations most residing east and center of NYC. The difference from larceny could be attributed to the fact that Manhattan (east of NYC) and Brooklyn (center of NYC) have more commuter and vehicle presence.
 
-The presented dataset spans from the beginning of Oct 2018 to beginning of Dec 2018. It is helpful to first get an overview of how Sparkify business in terms of month active users.
 
-Figure 1 (top) shows there is a slight drop in monthly active users from Oct to Nov 2018. With the amount of data on hand, it is inconclusive whether this change is significant or not. However, it does signaling the need to look at customer churn. On an individual level, Figure 1 (bottom) shows some users increased service usage from Oct to Nov; others decrease or even not use the service at all.
+<img src="{{site.baseurl}}/assets/img/20220112-parkomfort/fig_6.png" alt="Overview of parking violation data in NYC"/>
 
-### Churned users break-down by categorical features
+> Figure 6. Overview of parking violation data in NYC
 
-The proportion of churned users (churned proportion) among all distinct users is around 0.2210 or 22.10%.
 
-Breaking down churned customers and remaining customers via demographic informations such as gender, it was found that *female users have slightly higher churn proportion than male users (p_female=0.2273 vs p_male =0.2160)*. However, after running two-sided proportions z-test, **the difference in churned proportion between female and male users is not significant using a significance level of 0.05**.
+K-means clustering algorithms were used to analyze vehicle larceny and parking violation data.
 
-Similarly, we can break down churned vs remaining customer group by paid or free tiers. It was found *free-tier users have slightly lower churn proportion than paid-tier users (p_free=0.2216 vs p_paid=0.2336)*. After running hypothesis testing, **the difference in churn proportion between free-tier and paid-tier users is not significant using a significance level of 0.05**.
+On vehicle larceny data, it was found from the elbow method, the optimum cluster size is 25, with WCSS 2.72 and the clusters were plotted as shown in Fig.7. Based on the results, the vehicle-related crimes showed geographical preferences.
 
-### Churned users break-down by numerical features
+On parking violation data, it was found from the elbow method, the optimum cluster size is 25, and the clusters were plotted in Fig.8. The WCSS was found to be 0.2*1e7.
 
-The numerical features used in this project were selected from a subset of columns (“ts”, “registration_time” and “page”). Combined with timestamp of churn event, “registration_time” was used to calculate the tenure or customer lifetime in days. “page” column was used to generate user actions with the service, and the total number of each action for each user at each level was aggregated. The following numerical features were used, and selected rows with numerical features is shown in Figure 2. **Note**: *there are multiple users who have been both paid and free users due to upgrade and downgrade events*.
+<img src="{{site.baseurl}}/assets/img/20220112-parkomfort/fig_7.png" alt="K-means clustering on vehicle larceny data"/>
 
-```
-'tenure_days', 'total_session', 'total_thumbs_down', 'total_home', 'total_roll_advert', 'total_logout', 'total_save_settings', 'total_about', 'total_settings', 'total_add_to_playlist', 'total_add_friend', 'total_nextsong', 'total_thumbs_up', 'total_help', 'total_error'
-```
+> Figure 7. K-means clustering on vehicle larceny data
 
-<img src="{{site.baseurl}}/assets/img/20210825-spark-churn/numerical-features.png" alt="numerical features"/>
 
-> Figure 2. Numerical features for selected row.
+<img src="{{site.baseurl}}/assets/img/20220112-parkomfort/fig_8.png" alt="K-means clustering on parking violation data"/>
 
-First, let’s take a look at the some statistics of these numerical features for churned and remaining users.
+> Figure 8. K-means clustering on parking violation data
 
-<img src="{{site.baseurl}}/assets/img/20210825-spark-churn/boxplot-hist.png" alt="boxplots and histplots"/>
 
-> Figure 3. (left) Boxplots showing variabilities and (right) histplots showing distributions of numerical features for remaining (0) and churned (1) users.
+Overall the model performance is decent. We devel- oped three models for this project. K-means for parking violation and larceny and KNN for precinct classifica- tion. For the parking violation prediction accuracy, we decided to trust the data by just looking at the NYC open data for our model predictions since none of the group member resides in NYC area. The K-means clustering algorithms output clusters that closely resembles the precinct assignments in NYC, showing that the model works well to model the geographical distributions for vehicle crime and parking violation datasets. Although,
+there is some noise We further adopt the clusters as a means to assign hot zones for each parking meter, use the model for prediction of the safety of the parking spots. The cluster size can be further increased to pin point the hot zones for parking violation or the larceny data. The precinct classification has a accuracy of 88.5% for us to assess the risk level of each precinct, which is a number that we are also comfortable with.
 
-Figure 3 shows the variabilities and distributions of these numerical features. The median values for remaining and churned users are similar in all numerical features, and they all have a some amount of outliers signaling skewed distributions.
+## 5 CONCLUSIONS AND DISCUSSION
 
-The skewness is also indicated by the distribution plots. The direction of skewness is also worth studying. For some features, such as tenure days, total_add_to_playlist, total_add_friend, total_nextsong, it would be preferred to have left-skewed distributions with customers staying longer and have more positive engagements with the services. Apparently, this is not the case for the distributions from presented dataset. On other hand, for features like total_error and total_thumbs_down, a right-skewed distribution is preferred signaling fewer negative experiences.
+Overall, the project was a success given the amount of time and resources we had. We are able to get the closest parking locations with the recommended safer options. However, there is room for improvement. We are show- ing the level of safety on precinct level, the next step would be to focus on more regional area to provide more accurate recommendation. Also, the application render- ing time can be better, the way the application works is that it communicate with the server every time we perform a search. Even though we already aggregated the data beforehand, the communication time still takes longer than desired.
 
-In general, remaining users interacts more with the service across all events compared with churned users. Due to nature of aggregated properties and potential correlation between page actions, it is needed to explore the correlations among different features.
+Further, the cluster zoning not only helps the public to plan their trip safely but can also help the state police and law enforcement department to take additional pre- ventive measures in high and medium crime risk zones to combat against crime and plan advanced investiga- tion strategies. In future, we would like to include more attributes such as time factor to better predict the park- ing availabilities and we can also encompass the entire scope of parking tickets with real-time information on all cars that may have parked in a particular region.
 
-<img src="{{site.baseurl}}/assets/img/20210825-spark-churn/cor1.png" alt="correlation matrix 1"/>
+## 6 DISTRIBUTION OF EFFORT
+All team members have contributed similar amount of effort.
 
-> Figure 4. Correlation matrix among different numerical features.
-
-Figure 4 shows the correlation matrix among different numerical features. We could see that strong correlations exists! Proper feature engineering is needed to reduce correlations, in order to reduce multicollinearity and potential issues when using regression models.
-
-## Feature engineering
-
-Feature engineering was first performed by normalizing aggregated features by total_sessions. After normalization, obtained correlation matrix is shown in Figure 5.
-
-<img src="{{site.baseurl}}/assets/img/20210825-spark-churn/cor2.png" alt="correlation matrix 2"/>
-
-> Figure 5. correlation matrix after normalization.
-
-Some features are still highly correlated, such as add_to_playlist_per_session, home_per_session, thums_up_per_session, and next_song_per_session. These are all related to events implying positive user experience. We could add those feature together into a new feature, named postive_engagement_per_session. Updated correlation matrix is shown in Figure 6.
-
-<img src="{{site.baseurl}}/assets/img/20210825-spark-churn/cor3.png" alt="correlation matrix 3"/>
-
-> Figure 6. Updated correlation matrix after combining several normalized features.
-
-The numerical features after feature engineering showed less correlation. The transformed data set is then fed into machine learning pipeline to train models to make predictions on customer churn.
-
-## Modeling
-
-The transformed dataset was first split into train, test, and validation sets. Several of the machine learning classifiers, including Logistic Regression, Decision Tree, Random Forest, and Gradient Boost Tree, were used for training. Since the proportion of churned users is small compared with remaining users, i.e. imbalanced dataset, F1 score was used as the main measure for accuracy of various models.
-
-<img src="{{site.baseurl}}/assets/img/20210825-spark-churn/base.png" alt="baseline performance"/>
-
-> Figure7. Baseline performances of various ML models on validation set.
-
-Before feeding the training set into ML models, feature scaling through standardization was performed. Baseline performances were first obtained for the above models using default settings from Spark ML library. The result is shown in Figure 7.
-
-From the baseline score result, random forest classifier performed the best on validation set with F-1 score of 0.7761 and accuracy of 0.815.
-
-Use the same trained random forest classifier on test set, we got F-1 score of 0.7007 and accuracy of 0.76. To improve its performance, hyper-parameter tuning was performed on this model with 5-fold cross-validation on the training set.
-
-After, hyper-parameter tuning, the performance of the newly trained random forest classifier on test set improved slightly to a F-1 score of 0.7066 and accuracy of 0.768.
-
-
-<img src="{{site.baseurl}}/assets/img/20210825-spark-churn/importance.png" alt="feature importance ranking"/>
-
-> Figure 8. Feature importance ranking extracted for tuned random forest classifier.
-
-Feature importance was also extracted from tuned model (shown in Figure 8). Looking at feature importance ranking, we could see that customer tenure time is the most important, followed by user actions, such as receiving ads, thumb-downs, and positive engagements (add to playlist, nextsong, thumbs up). On the other side of the spectrum, gender and level of service are of least importance, which is in line with the hypothesis testing where we conclude the differences are not significant.
-
-## Conclusion
-
-In this project, we leveraged Spark to analyze large amount of user logs and built machine learning models to predict customer churn, with the intention of using trained model to be potentially serving future ad campaigns.
-
-By performing hyper-parameter tuning, we achieved slight improvement in F-1 scores on the test set using the tuned random forest classifier. The limited performance improvement might be due to the following reasons:
-
-- Imbalanced dataset (99 churned vs 349 remaining unique users). Even though we use F-1 score as metric to reduce the bias from imbalanced data, rebalancing could be performed to further improve model performance.
-
-- Information loss during feature engineering stage. To reduce the multicollinearity, we normalized and combined some features. Even though it could reduce the issues for regression models, it might be worth investigating using features as is for models more resilient to multicollinearity, such as random forest, decision tree.
-
-- Need for more features extracted from event log. There are more information from the event log that has not been used in this project, such as geolocation tags and downgrade/upgrade related events. These new features could offer more dimensions to correctly predict customer churn.
-
-To see more about this analysis, please direct to my Github repository <a href="https://github.com/hengli700/spark-machine-learning-sparkify" target="_blank">here</a>.
-
----
+--
 
 ## Acknowledgments
-- Datasets are provided by Udacity Data Scientist Nanodegree program
-- Cloud service provided by IBM Cloud
+- This project is group project for Georgia Tech Data and Visual Analytics course.
