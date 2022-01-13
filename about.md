@@ -8,19 +8,27 @@ title: About
 </div>
 <p>
 Hi there :wave:! This is Heng.
-
-Before data science, I spent three years after my PhD as research scientists in industry developing and commercializing functional textiles. On the side, I also worked with many brilliant minds from Georgia Tech and finished Master's degree in Machine Learning.
-
-Two out of the many things that I am fascinated about data science are
-- Excitement of researching into many problem domains (maybe completely new ones as well)
-- Ownership of products which enables me to see problem-solving from concept to production
-
-Happy to connect and solve problems together!
 </p>
+<p>
+Before data science, I spent three years after my PhD as research scientists in industry developing and commercializing functional textiles. On the side, I also worked with many brilliant minds from Georgia Tech and finished Master's degree in Machine Learning.
+</p>
+<p>
+Two out of the many things that I am fascinated about data science are
+</p>
+
+<ul>
+  <li>Excitement of researching into many problem domains (maybe completely new ones as well)</li>
+  <li>Ownership of products which enables me to see problem-solving from concept to production</li>
+</ul>
 
 <p>
   To date, data science has been a great tool throughout my career, in analyzing molecular interactions during research, designing experiments, as well as extracting insights to help businesses succeed.
 </p>
+
+<p>
+Happy to connect and solve problems together!
+</p>
+
 
 ---
 
