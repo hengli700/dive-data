@@ -190,7 +190,7 @@ The search page takes any NYC address and looks for closest parking meters. Sear
 ### 4.2 Plans of Observations
 This can be accomplished in the following ways:
 1. Subscribe to social media for local news about crimes at the area
-2. In person observation at locations with high park- ing tickets issued
+2. In person observation at locations with high parking tickets issued
 3. Depends on the frequency of the NYC open data updates, we can keep track of the new data to test the hypothesis over a span of 1 month.
 4. Using user reviews to test UI usability
 
@@ -239,7 +239,7 @@ On parking violation data, it was found from the elbow method, the optimum clust
 > Figure 8. K-means clustering on parking violation data
 
 
-Overall the model performance is decent. We devel- oped three models for this project. K-means for parking violation and larceny and KNN for precinct classifica- tion. For the parking violation prediction accuracy, we decided to trust the data by just looking at the NYC open data for our model predictions since none of the group member resides in NYC area. The K-means clustering algorithms output clusters that closely resembles the precinct assignments in NYC, showing that the model works well to model the geographical distributions for vehicle crime and parking violation datasets. Although,
+Overall the model performance is decent. We developed three models for this project. K-means for parking violation and larceny and KNN for precinct classifica- tion. For the parking violation prediction accuracy, we decided to trust the data by just looking at the NYC open data for our model predictions since none of the group member resides in NYC area. The K-means clustering algorithms output clusters that closely resembles the precinct assignments in NYC, showing that the model works well to model the geographical distributions for vehicle crime and parking violation datasets. Although,
 there is some noise We further adopt the clusters as a means to assign hot zones for each parking meter, use the model for prediction of the safety of the parking spots. The cluster size can be further increased to pin point the hot zones for parking violation or the larceny data. The precinct classification has a accuracy of 88.5% for us to assess the risk level of each precinct, which is a number that we are also comfortable with.
 
 ## 5 CONCLUSIONS AND DISCUSSION
@@ -247,9 +247,6 @@ there is some noise We further adopt the clusters as a means to assign hot zones
 Overall, the project was a success given the amount of time and resources we had. We are able to get the closest parking locations with the recommended safer options. However, there is room for improvement. We are show- ing the level of safety on precinct level, the next step would be to focus on more regional area to provide more accurate recommendation. Also, the application render- ing time can be better, the way the application works is that it communicate with the server every time we perform a search. Even though we already aggregated the data beforehand, the communication time still takes longer than desired.
 
 Further, the cluster zoning not only helps the public to plan their trip safely but can also help the state police and law enforcement department to take additional pre- ventive measures in high and medium crime risk zones to combat against crime and plan advanced investiga- tion strategies. In future, we would like to include more attributes such as time factor to better predict the park- ing availabilities and we can also encompass the entire scope of parking tickets with real-time information on all cars that may have parked in a particular region.
-
-## 6 DISTRIBUTION OF EFFORT
-All team members have contributed similar amount of effort.
 
 ---
 ## Acknowledgments
