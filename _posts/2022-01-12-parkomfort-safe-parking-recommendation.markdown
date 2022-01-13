@@ -145,7 +145,7 @@ database) as it only has geolocations and no address. We
 then run a reverse search using the same python geopy
 library.
 
-#### 3.3.3 Data Analysis.
+#### 3.3.3 Data Analysis
 We also implemented an unsupervised machine learning algorithm, k-means clustering, to identify similarities among the parking ticketing data. Each parking
 citation will be assigned to a cluster and will map to
 police precincts. It will enable the calculation of the distribution of tickets per precinct within a cluster, allow-
@@ -251,7 +251,6 @@ Further, the cluster zoning not only helps the public to plan their trip safely 
 ## 6 DISTRIBUTION OF EFFORT
 All team members have contributed similar amount of effort.
 
---
-
+---
 ## Acknowledgments
 - This project is group project for Georgia Tech Data and Visual Analytics course.
