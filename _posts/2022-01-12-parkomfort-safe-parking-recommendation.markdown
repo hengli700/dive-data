@@ -249,5 +249,9 @@ Overall, the project was a success given the amount of time and resources we had
 Further, the cluster zoning not only helps the public to plan their trip safely but can also help the state police and law enforcement department to take additional pre- ventive measures in high and medium crime risk zones to combat against crime and plan advanced investiga- tion strategies. In future, we would like to include more attributes such as time factor to better predict the park- ing availabilities and we can also encompass the entire scope of parking tickets with real-time information on all cars that may have parked in a particular region.
 
 ---
+
+Link to GitHub repository at [here](https://github.com/hengli700/parkomfort).
+
+---
 ## Acknowledgments
 - This project is group project for Georgia Tech Data and Visual Analytics course.
