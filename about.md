@@ -3,27 +3,21 @@ layout: page
 title: About
 ---
 ### About me
-<div>
-<img style="float: left; width: 15em; margin-right: 1em" src="{{site.baseurl}}/assets/img/about/profile.png" alt="profile image"/>
-</div>
+
 <p>
 Hi there :wave:! This is Heng.
 </p>
 <p>
-Before data science, I spent three years after my PhD as research scientists in industry developing and commercializing functional textiles. On the side, I also worked with many brilliant minds from Georgia Tech and finished Master's degree in Machine Learning.
+To date (2023 Fall), I have about 3 years direct DS/ML experience in companies such as Apple and Square. I helped the companies launched new hardware products more efficiently by leveraging data science and various machine learning / deep learning tools. Outside of directly working with product partners, I am also motivated and capable of diving deep to research and development in latest advancement in ML and data science.
 </p>
 <p>
-Two out of the many things that I am fascinated about data science are
+Two out of the many things that I am fascinated about data science and machine learning are
 </p>
 
 <ul>
   <li>Excitement of researching into many problem domains (maybe completely new ones as well)</li>
   <li>Ownership of products which enables me to see problem-solving from concept to production</li>
 </ul>
-
-<p>
-  To date, data science has been a great tool throughout my career, in analyzing molecular interactions during research, designing experiments, as well as extracting insights to help businesses succeed.
-</p>
 
 <p>
 Happy to connect and solve problems together!
