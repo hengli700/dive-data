@@ -2,13 +2,12 @@
 layout: page
 title: About
 ---
-### About me
 
 <p>
 Hi there :wave:! This is Heng.
 </p>
 <p>
-To date (2023 Fall), I have about 3 years direct DS/ML experience in companies such as Apple and Square. I helped the companies launched new hardware products more efficiently by leveraging data science and various machine learning / deep learning tools. Outside of directly working with product partners, I am also motivated and capable of diving deep to research and development in latest advancement in ML and data science.
+During my time at companies such as Apple and Square, I helped the team launched new hardware products more efficiently by leveraging data science and various machine learning / deep learning tools. Outside of directly working with product partners, I am also motivated and capable of diving deep to research and development in latest advancement in ML and data science.
 </p>
 <p>
 Two out of the many things that I am fascinated about data science and machine learning are
